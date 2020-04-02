@@ -162,6 +162,8 @@ return [
 
         App\Providers\RepositoryServiceProvider::class,
 
+        Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
+
     ],
 
     /*
@@ -210,7 +212,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
     ],
 
 ];

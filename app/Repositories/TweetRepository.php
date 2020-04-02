@@ -11,4 +11,16 @@ class TweetRepository implements TweetRepositoryInterface
     {
         return Tweet::orderBy('id', 'desc')->take(20)->get();
     }
+
+    public function store($request)
+    {
+        $request->only('username', 'tweet');
+
+        $create = Tweet::create([
+            'username' => $request->username,
+            'text' => $request->tweet
+        ]);
+
+        return $create;
+    }
 }

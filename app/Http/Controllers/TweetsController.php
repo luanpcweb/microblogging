@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\TweetRepositoryInterface;
+use App\Http\Requests\TweetStoreRequest;
 
 class TweetsController extends Controller
 {
@@ -18,5 +19,15 @@ class TweetsController extends Controller
     {
         $tweets = $this->tweetRepository->last();
         return view('home')->withTweets($tweets);
+    }
+
+    public function tweet()
+    {
+        return view('tweet');
+    }
+
+    public function store(TweetStoreRequest $request)
+    {
+        return $this->tweetRepository->store($request);
     }
 }

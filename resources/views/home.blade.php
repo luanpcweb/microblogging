@@ -53,11 +53,6 @@
                     </div>
                 </div>
 
-                @if ($i % 2 == 0)
-                    </div>
-                    <div class="row">
-                @endif
-
                 @endfor
 
             </div>

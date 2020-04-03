@@ -13,7 +13,7 @@
 
                     <p class="card-text">{{ $tweets[$i]['text'] }}</p>
 
-                    <h5 class="card-title"><?php echo '@'; ?>{{ $tweets[$i]['username'] }}</h5>
+                    <h5 class="card-title">{{ $tweets[$i]['username'] }}</h5>
                     <p class="card-subtitle mb-2 text-muted"><small>{{ $tweets[$i]['created_at']->format('d/m/Y H:i:s') }}</small></p>
                     <a href="/tweet/{{ $tweets[$i]['id'] }}/delete" class="card-link excluir"><i class="fas fa-trash-alt"></i> Excluir</a>
                   </div>

@@ -14,3 +14,6 @@
 Route::get('/', 'TweetsController@index');
 Route::get('/tweet', 'TweetsController@tweet');
 Route::post('/tweet', 'TweetsController@store');
+Route::delete('/tweet/{id}/delete', 'TweetsController@destroy');
+
+Route::get('/hashtags/{hashtag}', 'TweetsController@getByHashtag');

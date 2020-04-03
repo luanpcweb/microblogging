@@ -21,6 +21,36 @@ class TweetRepository implements TweetRepositoryInterface
             'text' => $request->tweet
         ]);
 
+        $this->hashtag()->store($create->id, $create->text);
+
         return $create;
+    }
+
+    public function hashtag()
+    {
+        return new HashtagRepository();
+    }
+
+    public function destroy($id)
+    {
+
+        try {
+            $tweet = Tweet::findOrFail($id);
+            $tweet->delete();
+            return true;
+        } catch(Execption $e) {
+            return false;
+        }
+    }
+
+    public function getByHashtag($hashtag)
+    {
+
+        $hashtag = '#'.$hashtag;
+
+        return Tweet::where('hashtags.hashtag', $hashtag)
+            ->leftJoin('hashtags', 'hashtags.tweets_id', '=', 'tweets.id')
+            ->take(20)
+            ->get();
     }
 }

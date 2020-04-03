@@ -28,6 +28,29 @@ class TweetsController extends Controller
 
     public function store(TweetStoreRequest $request)
     {
-        return $this->tweetRepository->store($request);
+        $result = $this->tweetRepository->store($request);
+
+        if ($result) {
+            return redirect('/')->with('message', 'Tweet publicado com sucesso!');
+        }
+
+        return redirect()->back()->with('message', 'Tweet não pode ser publicado!');
+    }
+
+    public function destroy($id)
+    {
+        $destroy = $this->tweetRepository->destroy($id);
+
+        if ($destroy) {
+            return redirect('/')->with('message', 'Tweet deletado com sucesso!');
+        }
+
+        return redirect('/')->with('message', 'Não foi possível deletar tweet!');
+    }
+
+    public function getByHashtag($hashtag)
+    {
+        $tweets = $this->tweetRepository->getByHashtag($hashtag);
+        return view('home')->withTweets($tweets);
     }
 }

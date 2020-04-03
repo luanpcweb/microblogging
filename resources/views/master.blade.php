@@ -27,10 +27,7 @@
             <ul class="navbar-nav mr-auto">
             </ul>
             <a href="/tweet" class="btn btn-success my-2 my-sm-0 espacamento-botao-tweet"><i class="fas fa-plus-circle"></i> Tweet</a>
-            <form class="form-inline mt-2 mt-md-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="#hashtag" aria-label="Pesquisar">
-              <button class="btn btn-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Pesquisar</button>
-            </form>
+
           </div>
         </nav>
 

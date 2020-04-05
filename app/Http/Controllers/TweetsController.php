@@ -42,10 +42,10 @@ class TweetsController extends Controller
         $destroy = $this->tweetRepository->destroy($id);
 
         if ($destroy) {
-            return redirect('/')->with('message', 'Tweet deletado com sucesso!');
+            return redirect('/')->with('message', 'Tweet removido com sucesso!');
         }
 
-        return redirect('/')->with('message', 'Não foi possível deletar tweet!');
+        return redirect('/')->with('message', 'Tweet não encontrado!');
     }
 
     public function getByHashtag($hashtag)

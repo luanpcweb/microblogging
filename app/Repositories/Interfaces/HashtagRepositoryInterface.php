@@ -7,5 +7,4 @@ interface HashtagRepositoryInterface
 {
     public function store($tweets_id, $text);
 
-    public function getTweetIdByHashTag($hastag);
 }

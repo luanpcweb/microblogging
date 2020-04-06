@@ -40,7 +40,8 @@ class TweetStoreRequest extends FormRequest
             'username.required' => 'Username é necessário para publicação!',
             'username.space' => 'Username com formato inválido! Evite espaços.',
             'username.regex' => 'Username com formato inválido! Comece com @.',
-            'tweet.required' => 'Tweet é necessário para publicação'
+            'tweet.required' => 'Tweet é necessário para publicação.',
+            'tweet.max' => 'Tweet contem mais de 280 caracteres.'
         ];
     }
 

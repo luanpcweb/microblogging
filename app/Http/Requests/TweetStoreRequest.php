@@ -48,8 +48,8 @@ class TweetStoreRequest extends FormRequest
     public function filters()
     {
         return [
-            'email' => 'trim|lowercase',
-            'name' => 'trim|capitalize|escape'
+            'username' => 'trim|lowercase',
+            'tweet' => 'trim|escape'
         ];
     }
 }

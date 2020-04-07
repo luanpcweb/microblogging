@@ -17,6 +17,9 @@ cp .env.example .env
 echo 'Run composer PHP'
 docker run --rm -v $(pwd):/app composer install
 
+echo ' - Artisan Key Generate'
+docker exec php /bin/sh -c 'php artisan key:generate'
+
 echo ' - Artisan Migrate'
 docker exec php /bin/sh -c 'php artisan migrate'
 

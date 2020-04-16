@@ -14,11 +14,11 @@ class CreateHashtagsTable extends Migration
     public function up()
     {
         Schema::create('hashtags', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->uuid('uuid')->primary();
             $table->string('hashtag', 55);
 
-            $table->bigInteger('tweets_id')->unsigned();
-            $table->foreign('tweets_id')->references('id')->on('tweets')->onDelete('cascade');
+            $table->char('tweets_uuid', 36);
+            $table->foreign('tweets_uuid')->references('uuid')->on('tweets')->onDelete('cascade');
 
             $table->timestamps();
         });

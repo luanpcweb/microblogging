@@ -17,7 +17,7 @@ class CreateHashtagsTable extends Migration
             $table->uuid('uuid')->primary();
             $table->string('hashtag', 55);
 
-            $table->char('tweets_uuid', 36);
+            $table->uuid('tweets_uuid');
             $table->foreign('tweets_uuid')->references('uuid')->on('tweets')->onDelete('cascade');
 
             $table->timestamps();

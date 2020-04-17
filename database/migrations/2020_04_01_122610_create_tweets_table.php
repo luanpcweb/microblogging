@@ -14,7 +14,7 @@ class CreateTweetsTable extends Migration
     public function up()
     {
         Schema::create('tweets', function (Blueprint $table) {
-            $table->uuid('uuid');
+            $table->uuid('uuid')->primary();
             $table->text('text', 280);
             $table->string('username', 55);
             $table->timestamps();

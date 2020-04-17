@@ -2,12 +2,15 @@
 
 namespace App\Exceptions;
 
-class BosyLengthExeeded extends \UnexpectedValueException
+use Exception;
+
+class BodyLengthExceeded extends \UnexpectedValueException
 {
     private $body;
 
-    public function __construct(string $body)
+    public function __construct($body)
     {
         $this->body = $body;
     }
+
 }

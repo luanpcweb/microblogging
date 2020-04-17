@@ -48,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof ErrorOnDeletingTweet) {
+            return redirect('/')->with('error', ['message' => 'Tweet não existe']);
+        }
         return parent::render($request, $exception);
     }
 }

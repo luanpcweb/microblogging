@@ -7,6 +7,11 @@
             {!! implode('', $errors->all('<div class="alert alert-danger" role="alert">:message</div>')) !!}
         @endif
 
+        @if (session('message'))
+                <div class="alert alert-danger">{{ session('message') }}</div>
+        @endif
+
+
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <form method="post" action="/tweet" enctype="multipart/form-data">
@@ -17,8 +22,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tweet">Tweet</label>
-                        <textarea class="form-control" id="tweet" name="tweet" rows="3"></textarea>
+                        <label for="body">Tweet</label>
+                        <textarea class="form-control" id="body" name="body" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Publicar</button>
                 </form>

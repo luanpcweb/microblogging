@@ -25,7 +25,7 @@
 
                     <h5 class="card-title">{{ $tweets[$i]['username'] }}</h5>
                     <p class="card-subtitle mb-2 text-muted"><small>{{ $tweets[$i]['created_at']->format('d/m/Y H:i:s') }}</small></p>
-                    <form action="/tweet/{{ $tweets[$i]['id'] }}/delete" method="post" enctype="multipart/form-data">
+                    <form action="/tweet/{{ $tweets[$i]['uuid'] }}/delete" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input name="_method" type="hidden" value="DELETE">
                         <button class="btn btn-default excluir"><i class="fas fa-trash-alt"></i> Excluir</button>

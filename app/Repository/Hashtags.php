@@ -11,11 +11,12 @@ class Hashtags
     public function saveHashtag(Hashtag $hashtag)
     {
 
-            HashtagModel::create([
-                        'uuid' => $hashtag->getUuid(),
-                        'hashtag' => $hashtag->getHashtag(),
-                        'tweets_uuid' => $hashtag->getTweetUuid()
-                    ]);
+        HashtagModel::create([
+                'uuid' => $hashtag->getUuid(),
+                'hashtag' => $hashtag->getHashtag(),
+                'tweets_uuid' => $hashtag->getTweetUuid()
+            ]);
+
     }
 
 }

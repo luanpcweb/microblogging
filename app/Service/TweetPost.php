@@ -21,7 +21,7 @@ class TweetPost
 
     public function post(string $username, string $body)
     {
-        $now = new Datetime('now', new \DateTimeZone('UTC'));
+        $now = new \Datetime('now', new \DateTimeZone('UTC'));
         $uuid = Uuid::uuid5(Uuid::NAMESPACE_URL, $username . $body . $now->format('Ymdims'));
 
         $tweet = new Tweet($uuid, $username, $body, $now);
@@ -34,7 +34,7 @@ class TweetPost
             $tag = $tweet->getTags()[$i];
             $tweetUuid = Uuid::uuid5(Uuid::NAMESPACE_URL, $username . $tag . $now->format('Ymdims'));
 
-            $hashtag = new Hashtag($uuid, $tag, $uuid);
+            $hashtag = new Hashtag($tweetUuid, $tag, $uuid);
             $this->hashtagRepository->saveHashtag($hashtag);
 
         }

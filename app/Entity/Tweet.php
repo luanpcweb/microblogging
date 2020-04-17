@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Exceptions\BodyLengthExeeded;
+use App\Exceptions\BodyLengthExceeded;
 
 class Tweet
 {
@@ -13,7 +13,7 @@ class Tweet
     private $body;
     private $createdAt;
 
-    public function __construct(string $uuid; string $username, string $body, \DateTime $createdAt)
+    public function __construct(string $uuid, string $username, string $body, \DateTime $createdAt)
     {
         $this->ensureIntegrity($body);
 
@@ -26,7 +26,7 @@ class Tweet
     private function ensureIntegrity(string $body) :void
     {
         if (mb_strlen($body) > self::MAX_BODY_LENGTH) {
-            throw new BodyLengthExeeded($body);
+            throw new BodyLengthExceeded($body);
         }
     }
 

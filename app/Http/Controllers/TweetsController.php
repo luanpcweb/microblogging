@@ -3,21 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\Interfaces\TweetRepositoryInterface;
 use App\Http\Requests\TweetStoreRequest;
+use App\Repository\Tweets;
+use App\Service\TweetPost;
+use App\Exceptions\BodyLengthExceeded;
+use App\Exceptions\ErrorOnDeletingTweet;
 
 class TweetsController extends Controller
 {
-    private $tweetRepository;
+    private $tweetsRepository;
 
-    public function __construct(TweetRepositoryInterface $tweetRepository)
+    private $tweetPost;
+
+    public function __construct(Tweets $tweetsRepository, TweetPost $tweetPost)
     {
-        $this->tweetRepository = $tweetRepository;
+        $this->tweetsRepository = $tweetsRepository;
+        $this->tweetPost = $tweetPost;
     }
 
     public function index()
     {
-        $tweets = $this->tweetRepository->last();
+        $tweets = $this->tweetsRepository->last();
         return view('home')->withTweets($tweets);
     }
 
@@ -28,29 +34,33 @@ class TweetsController extends Controller
 
     public function store(TweetStoreRequest $request)
     {
-        $result = $this->tweetRepository->store($request);
+        $username = $request->input('username');
+        $body = $request->input('body');
 
-        if ($result) {
-            return redirect('/')->with('message', 'Tweet publicado com sucesso!');
+        try {
+            $this->tweetPost->post($username, $body);
+        } catch (BodyLengthExceeded $exception) {
+            return redirect()->back()->with('message', 'Tweet não pode ultrapassar de 280 caracteres!');
         }
 
-        return redirect()->back()->with('message', 'Tweet não pode ser publicado!');
+        return redirect('/')->with('message', 'Tweet publicado com sucesso!');
+
     }
 
-    public function destroy($id)
+    public function destroy($uuid)
     {
-        $destroy = $this->tweetRepository->destroy($id);
+        $destroy = $this->tweetsRepository->destroy($uuid);
 
-        if ($destroy) {
-            return redirect('/')->with('message', 'Tweet removido com sucesso!');
+        if (!$destroy) {
+            throw new ErrorOnDeletingTweet('Erro em remover tweet');
         }
 
-        return redirect('/')->with('message', 'Tweet não encontrado!');
+        return redirect('/')->with('message', 'Tweet removido!');
     }
 
     public function getByHashtag($hashtag)
     {
-        $tweets = $this->tweetRepository->getByHashtag($hashtag);
+        $tweets = $this->tweetsRepository->getByHashtag($hashtag);
         return view('home')->withTweets($tweets);
     }
 }

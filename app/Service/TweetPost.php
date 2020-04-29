@@ -32,9 +32,9 @@ class TweetPost
         for($i=0; $i < $countTags; $i++){
 
             $tag = $tweet->getTags()[$i];
-            $tweetUuid = Uuid::uuid5(Uuid::NAMESPACE_URL, $username . $tag . $now->format('Ymdims'));
+            $hashtagUuid = Uuid::uuid5(Uuid::NAMESPACE_URL, $username . $tag . $now->format('Ymdims'));
 
-            $hashtag = new Hashtag($tweetUuid, $tag, $uuid);
+            $hashtag = new Hashtag($hashtagUuid, $tag, $uuid);
             $this->hashtagRepository->saveHashtag($hashtag);
 
         }
